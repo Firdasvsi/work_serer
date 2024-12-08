@@ -201,7 +201,7 @@
   
         function deleteMovie(index) {
             movies.splice(index, 1);
-            saveMoviesToLocalStorage(); // Сохраняем изменения в localStorage
+            saveMoviesToLocalStorage();
             renderMovies();
         }
 
@@ -234,12 +234,12 @@
                 });
 
                 renderFilteredMovies(filteredMovies);
-            }, 300); // 300ms задержка для debounce
+            }, 300); 
         }
 
         function renderFilteredMovies(filteredMovies) {
             const tbody = document.querySelector("#moviesTable tbody");
-            tbody.innerHTML = ""; // Очистка таблицы
+            tbody.innerHTML = ""; 
 
             filteredMovies.forEach((movie, index) => {
                 const row = document.createElement("tr");
