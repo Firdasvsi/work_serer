@@ -98,8 +98,6 @@
 
 <body>
     <h1>Фильмотека</h1>
-
-    <!-- Форма для добавления фильма -->
     <form id="movieForm">
         <label for="title">Название:</label>
         <input type="text" id="title" required>
@@ -117,8 +115,6 @@
         <button type="submit">Добавить фильм</button>
         <span class="error" id="error"></span>
     </form>
-
-    <!-- Фильтры и управление -->
     <div class="controls">
         <label for="filterTitle">Название фильма:</label>
         <input type="text" id="filterTitle" placeholder="Введите название">
@@ -156,19 +152,16 @@
     <script>
         let movies = []; // Локальный массив для хранения фильмов
 
-        // Сохранение данных в localStorage
         function saveMoviesToLocalStorage() {
             localStorage.setItem("movies", JSON.stringify(movies));
         }
 
-        // Загрузка данных при старте
         const savedMovies = localStorage.getItem("movies");
         if (savedMovies) {
             movies = JSON.parse(savedMovies);
             renderMovies();
         }
 
-        // Добавление фильма
         document.getElementById("movieForm").addEventListener("submit", function (e) {
             e.preventDefault();
             const title = document.getElementById("title").value.trim();
@@ -188,8 +181,6 @@
             renderMovies();
             this.reset();
         });
-
-        // Рендеринг таблицы фильмов
         function renderMovies() {
             const tbody = document.querySelector("#moviesTable tbody");
             tbody.innerHTML = ""; // Очистка таблицы
@@ -207,14 +198,14 @@
             });
         }
 
-        // Удаление одного фильма
+  
         function deleteMovie(index) {
             movies.splice(index, 1);
             saveMoviesToLocalStorage(); // Сохраняем изменения в localStorage
             renderMovies();
         }
 
-        // Удаление всех фильмов
+
         function deleteAllMovies() {
             if (confirm("Вы уверены, что хотите удалить все фильмы?")) {
                 movies = [];
@@ -223,7 +214,7 @@
             }
         }
 
-        // Фильтрация фильмов
+
         let debounceTimer;
         function filterMovies() {
             clearTimeout(debounceTimer);
@@ -263,7 +254,6 @@
             });
         }
 
-        // Подключение фильтров
         document.getElementById("filterTitle").addEventListener("input", filterMovies);
         document.getElementById("filterGenre").addEventListener("input", filterMovies);
         document.getElementById("filterYear").addEventListener("input", filterMovies);
